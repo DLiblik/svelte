@@ -75,15 +75,22 @@ By convention, values passed to components are referred to as _properties_ or _p
 As with elements, `name={name}` can be replaced with the `{name}` shorthand.
 
 ```svelte
-<Widget foo={bar} answer={42} text="hello" />
+<Widget foo={bar} answer={42} text="hello" {name} />
 ```
 
 _Spread attributes_ allow many attributes or properties to be passed to an element or component at once.
 
 An element or component can have multiple spread attributes, interspersed with regular ones.
 
+```js
+let things = {
+  foo: bar,
+  answer: 42
+}
+```
+
 ```svelte
-<Widget {...things} />
+<Widget {...things} text="hello" {name} />
 ```
 
 `$$props` references all props that are passed to a component, including ones that are not declared with `export`. Using `$$props` will not perform as well as references to a specific prop because changes to any prop will cause Svelte to recheck all usages of `$$props`. But it can be useful in some cases – for example, when you don't know at compile time what props might be passed to a component.
